@@ -11,12 +11,10 @@ export default function HomeScreen({ navigation }) {
             <Image
                 source={test}
             />
-            <Button title={"대소변"} onPress={() => Alert.alert("대소변")}/>
+            <Button title={"대소변"} onPress={() => navigation.navigate('Poop')}/>
             <Button title={"식사"} onPress={() => navigation.navigate('Food')}/>
 
-            <SignInButton />
-            <DateTimePicker />
-            <PoopPicker />
+            {/*<SignInButton />*/}
             <StatusBar style="auto" />
         </View>
     );
