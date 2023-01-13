@@ -1,31 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import {StyleSheet, Alert, Image, Text, View} from 'react-native';
-import {SignInButton} from './src/Button';
-import test from './img/dahara.png';
-import DateTimePicker from './src/Datetime';
-import PoopPicker from "./src/PoopPicker";
+// export default function App() {
+//     return (
+//         <NavigationContainer>
+//             <Stack.Navigator>
+//                 <Stack.Screen name="Home" component={HomeScreen} />
+//                 <Stack.Screen name="About" component={AboutScreen} />
+//             </Stack.Navigator>
+//         </NavigationContainer>
+//     );
+// }
 
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import HomeScreen from "./src/HomeScreen";
+import FoodScreen from "./src/FoodScreen";
+
+const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-
-    <View style={styles.container}>
-        <Image
-        source={test}
-        />
-        <SignInButton />
-        <DateTimePicker/>
-        {/*<PoopPicker />*/}
-        <StatusBar style="auto" />
-    </View>
-  );
+    return (
+      <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Food" component={FoodScreen} />
+          </Stack.Navigator>
+      </NavigationContainer>
+    );
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

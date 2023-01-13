@@ -1,33 +1,45 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React, {Component, useState} from "react";
+import {Switch, TextInput, View, Text, Button, Modal} from "react-native";
+import ModalSelector from 'react-native-modal-selector'
 import {Picker} from '@react-native-picker/picker';
 
-const App = () => {
-    const [selectedValue, setSelectedValue] = useState("log-shaped");
+const PoopPicker = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [selectedLanguage, setSelectedLanguage] = useState("pebble");
+    const showModal = () => {
+        console.log("selected", selectedLanguage);
+        setOpenModal(true);
+    };
+
+    const hideModal = () => {
+        setOpenModal(false);
+    }
+
+
     return (
-        <View style={styles.container}>
-            <Picker
-                selectedValue={selectedLanguage}
-                onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
-                }>
-                <Picker.Item label="토끼 똥 모양" value="pebble" />
-                <Picker.Item label="단단함" value="hard" />
-                <Picker.Item label="촉촉한 맛동산" value="log-shaped" />
-                <Picker.Item label="축축하고 힘없음" value="moist" />
-                <Picker.Item label="약간 액체" value="partialy-liquid" />
-                <Picker.Item label="액체" value="liquid" />
-            </Picker>
+        <View>
+            <Button title="Input Poop Type"
+                onPress={() => {
+                    showModal()
+                }}
+            />
+            <Modal style={{height: 100}} visible={openModal}>
+                <Picker
+                    selectedValue={selectedLanguage}
+                    onValueChange={(itemValue, itemIndex) => {
+                        setSelectedLanguage(itemValue);
+                        console.log(itemValue);
+                    }
+                    }>
+                    <Picker.Item label="토끼똥" value="pebble"/>
+                    <Picker.Item label="맛동산" value="log-shaped"/>
+                    <Picker.Item label="물똥" value="liquid"/>
+                </Picker>
+
+            </Modal>
         </View>
     );
+
+
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 40,
-        alignItems: "center"
-    }
-});
-
-export default App;
+export default PoopPicker;
